@@ -26,13 +26,15 @@
               <span class="header">Croissant Chef</span>
               <div class="statinline">
                 <span class="amount" id="chef">0</span>
-                <span class="price">$100</span>
+                <span class="price">$<span id="chefprice">100</span></span>
               </div>
               <br />
               <span class="description">+1 croissants per second</span>
               <br />
               <div class="btn-container">
-                <button class="buy-btn" onclick="buy(100,'chef',1)">Buy</button>
+                <button class="buy-btn" onclick="buy(prices.chef,'chef',1)">
+                  Buy
+                </button>
               </div>
             </div>
           </div>
@@ -41,7 +43,7 @@
               <span class="header">Croissant Bakery</span>
               <div class="statinline">
                 <span class="amount" id="bakery">0</span>
-                <span class="price">$300</span>
+                <span class="price">$<span id="bakeryprice">300</span></span>
               </div>
               <br />
               <span class="description">+4 croissants per second</span>
@@ -49,7 +51,7 @@
               <div class="btn-container">
                 <button
                   class="buy-btn bakerybutton"
-                  onclick="buy(350,'bakery',4)"
+                  onclick="buy(prices.bakery,'bakery',4)"
                   disabled="true"
                 >
                   Buy
@@ -65,7 +67,7 @@
               <span class="header">Croissant Market</span>
               <div class="statinline">
                 <span class="amount" id="market">0</span>
-                <span class="price">$600</span>
+                <span class="price">$<span id="marketprice">600</span></span>
               </div>
               <br />
               <span class="description">+8 croissants per second</span>
@@ -73,7 +75,7 @@
               <div class="btn-container">
                 <button
                   class="buy-btn marketbutton"
-                  onclick="buy(600,'market',8)"
+                  onclick="buy(prices.market,'market',8)"
                   disabled
                 >
                   Buy
@@ -89,7 +91,7 @@
               <span class="header">Croissant Factory</span>
               <div class="statinline">
                 <span class="amount" id="factory">0</span>
-                <span class="price">$1500</span>
+                <span class="price">$<span id="factoryprice">1500</span></span>
               </div>
               <br />
               <span class="description">+20 croissants per second</span>
@@ -97,7 +99,7 @@
               <div class="btn-container">
                 <button
                   class="buy-btn factorybutton"
-                  onclick="buy(1500,'factory',20)"
+                  onclick="buy(prices.factory,'factory',20)"
                   disabled
                 >
                   Buy
@@ -113,7 +115,7 @@
               <span class="header">Croissant Industry</span>
               <div class="statinline">
                 <span class="amount" id="industry">0</span>
-                <span class="price">$4000</span>
+                <span class="price">$<span id="industryprice">4000</span></span>
               </div>
               <br />
               <span class="description" aria-disabled="true"
@@ -123,7 +125,7 @@
               <div class="btn-container">
                 <button
                   class="buy-btn industrybutton"
-                  onclick="buy(4000,'industry',60)"
+                  onclick="buy(prices.industry,'industry',60)"
                   disabled
                 >
                   Buy
@@ -140,7 +142,9 @@
               <span class="header">Croissant Corp.</span>
               <div class="statinline">
                 <span class="amount" id="company">0</span>
-                <span class="price">$10000</span>
+                <span class="price"
+                  >$<span id="companyprice">100000</span></span
+                >
               </div>
               <br />
               <span class="description">+150 croissants per second</span>
@@ -148,7 +152,7 @@
               <div class="btn-container">
                 <button
                   class="buy-btn companybutton"
-                  onclick="buy(10000,'company',150)"
+                  onclick="buy(prices.company,'company',150)"
                   disabled
                 >
                   Buy
@@ -182,6 +186,11 @@
               <span>Production</span>
               <br />
               <span id="produc">0</span>
+              <div class="stat">
+                <span>Sell Price</span>
+                <br />
+                <span id="produc">0</span>
+              </div>
             </div>
             <div class="stat">
               <span>Money</span>
@@ -269,10 +278,12 @@
               <span class="header">je vais</span>
               <div class="statinline">
                 <span class="level" id="jvlevel">I</span>
-                <span class="price">3 Markets</span>
+                <span class="price" id="jv">3 Markets</span>
               </div>
               <br />
-              <span class="description">Unlocks are 5% cheaper</span>
+              <span class="description"
+                >Unlocks are <span class="jvstat">5</span>% cheaper</span
+              >
               <br />
               <button
                 class="buy-btn u"
