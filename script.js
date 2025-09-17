@@ -1,4 +1,5 @@
 cash = 0;
+discount = 1;
 croissant = { production: 0, value: 2, amount: 0 };
 unlockpower = {
   chef: 1,
@@ -8,6 +9,7 @@ unlockpower = {
   industry: 60,
   company: 150,
 };
+
 unlocks = {
   chef: 0,
   bakery: 0,
@@ -46,8 +48,18 @@ upgradeffect = {
   tef: ["50", "100", "300", "750", "2000", "6000"],
   tea: ["4", "3.5", "2.5", "2", "1"],
   je: ["3", "4", "5", "6", "10"],
-  jv: [""],
+  jv: ["5", "10", "15", "25", "50"],
 };
+function pricechange() {
+  document.getElementById("chefprice").innerHTML = prices.chef * discount;
+  document.getElementById("bakeryprice").innerHTML = prices.bakery * discount;
+  document.getElementById("marketprice").innerHTML = prices.market * discount;
+  document.getElementById("factoryprice").innerHTML = prices.factory * discount;
+  document.getElementById("industryprice").innerHTML =
+    prices.industry * discount;
+  document.getElementById("companyprice").innerHTML = prices.company * discount;
+}
+
 function romanize(num) {
   var lookup = {
       M: 1000,
@@ -198,7 +210,7 @@ const pricetier = [
   "industry",
   "company",
 ];
-const pricepair = { tef: "chef", tea: "bakery", je: "market" };
+const pricepair = { tef: "chef", tea: "bakery", je: "market", jv: "market" };
 function upgradescale(upgrade, price, type) {
   console.log(type);
   console.log(upgrade);
@@ -287,20 +299,25 @@ function upgradecheck() {
     }
   }
   if (upgrades.jv >= 1) {
-    if (upgrades.je == 1) {
-      croissant.value = 3;
+    if (upgrades.jv == 1) {
+      discount = 0.95;
+      pricechange();
     }
-    if (upgrades.je == 2) {
-      croissant.value = 4;
+    if (upgrades.jv == 2) {
+      discount = 0.9;
+      pricechange();
     }
-    if (upgrades.je == 3) {
-      croissant.value = 5;
+    if (upgrades.jv == 3) {
+      discount = 0.85;
+      pricechange();
     }
-    if (upgrades.je == 4) {
-      croissant.value = 6;
+    if (upgrades.jv == 4) {
+      discount = 0.75;
+      pricechange();
     }
-    if (upgrades.je == 5) {
-      croissant.value = 10;
+    if (upgrades.jv == 5) {
+      discount = 0.5;
+      pricechange();
     }
   }
 }
@@ -315,6 +332,7 @@ function levelchange(u) {
 }
 function buyupgrade(upgrade, currency, price) {
   console.log(unlocks[currency]);
+
   if (unlocks[currency] >= price) {
     unlocks[currency] -= price;
     upgrades[upgrade] += 1;
@@ -359,6 +377,7 @@ function clicked() {
 }
 
 function buy(price, unlock, stat) {
+  price = price * discount;
   if (cash >= price) {
     $("#pro2").removeAttr("style").css("display", "block");
     $("#pro2bar").removeAttr("style").css("display", "block");
